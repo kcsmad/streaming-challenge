@@ -19,13 +19,17 @@ const commonConfig: webpack.Configuration = {
         exclude: /node_modules/,
       },
       {
-        loader: 'babel-loader',
         test: /\.(js|jsx)$/,
+        loader: 'babel-loader',
         exclude: /node_modules/,
       },
       {
-        test: /\.scss?$/,
-        loader: 'sass-loader',
+        test: /\.s[ac]ss?$/i,
+        use: [
+          "style-loader",
+          "css-loader",
+          "sass-loader",
+        ],
       },
       {
         test: /\.(png|j?g|svg|gif)?$/,
@@ -40,6 +44,9 @@ const commonConfig: webpack.Configuration = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    modules: [
+      "node_modules",
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
